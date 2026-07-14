@@ -1,12 +1,17 @@
 from enum import IntEnum
 
-class TipoAtivo(IntEnum): 
+## TipoHardware e TipoSoftware substituem a classe TipoAtivo que misturava objetos diferentes e dificultava a separação dos objetos (com muitos if's)
+
+class TipoHardware(IntEnum):
 
     NOTEBOOK = 1
     SERVIDOR = 2
+    IMPRESSORA_DE_REDE = 3
+
+class TipoSoftware(IntEnum):
+
     BANCO_DE_DADOS = 3
-    SOFTWARE_LICENCIADO = 4 
-    IMPRESSORA_DE_REDE = 5
+    SOFTWARE_LICENCIADO = 4
 
 class TipoVulnerabilidade(IntEnum):
 

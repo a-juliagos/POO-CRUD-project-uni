@@ -59,9 +59,9 @@ Status: {vulnerabilidade.status.name} """)
 class AtivoHardware(Ativo):
 
     def __init__(self, id_ativo, nome_hostname, responsavel, setor, tipo, ano, cor):
-        super.__init__(id_ativo, nome_hostname, responsavel, setor, tipo)
+        super().__init__(id_ativo, nome_hostname, responsavel, setor, tipo)
         self.ano = ano
-        self.cor = cor
+        self.cor = cor 
 
     def to_dict(self):
 
@@ -76,16 +76,19 @@ class AtivoHardware(Ativo):
 
         super.listar()
         print(f"Ano: {self.ano}")
-        print(f"Cor: {self.ano}")
+        if self.cor is None:
+            print(f"Cor: Não possui")
+        else:
+            print(f"Cor: {self.cor}")
         print("-------------------------")
 
 
 class AtivoSoftware(Ativo):
 
     def __init__(self, id_ativo, nome_hostname, responsavel, setor, tipo, versao, licenca):
-        super.__init__(id_ativo, nome_hostname, responsavel, setor, tipo)
+        super().__init__(id_ativo, nome_hostname, responsavel, setor, tipo)
         self.versao = versao
-        self.licenca = licenca if possui_licenca else None
+        self.licenca = licenca
 
     def to_dict(self):
 
@@ -100,10 +103,10 @@ class AtivoSoftware(Ativo):
 
         super.listar()
         print(f"Versão: {self.versao}")
-        if self.possui_licenca:
-            print(f"Licença: {self.licenca}")
-        else:
+        if self.licenca is None:
             print("Licença: Não possui")
+        else:
+            print(f"Licença: {self.licenca}")
         print("-------------------------")
 
 
