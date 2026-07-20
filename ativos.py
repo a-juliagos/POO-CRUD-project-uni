@@ -1,3 +1,6 @@
+from colorama import Fore, Style, init
+init()
+
 class Ativo:
 
     def __init__(self, id_ativo, nome_hostname, responsavel, setor, tipo):
@@ -39,7 +42,7 @@ Tipo: {self.tipo.name} """)
 
     def listar_vulnerabilidades(self):  
 
-        print('\n---- Vulnerabilidades --- ')
+        print(Fore.BLUE + '\n---- Vulnerabilidades --- ' + Style.RESET_ALL)
         
         if not self.vulnerabilidades:
             
@@ -49,13 +52,13 @@ Tipo: {self.tipo.name} """)
             
             for i, vulnerabilidade in enumerate(self.vulnerabilidades, start=1):
                 
-                print(f"""   
+                print(Fore.BLUE + f"""   
 Vulnerabilidade {i}
 
 Descrição: {vulnerabilidade.descricao}
 Tipo: {vulnerabilidade.tipo.name}
 Severidade: {vulnerabilidade.severidade.name}
-Status: {vulnerabilidade.status.name} """)
+Status: {vulnerabilidade.status.name} """ + Style.RESET_ALL)
 
 class AtivoHardware(Ativo):
 
@@ -113,7 +116,3 @@ class AtivoSoftware(Ativo):
         
         super().listar_vulnerabilidades()
         print("-------------------------")
-
-
-
-

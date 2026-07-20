@@ -2,6 +2,8 @@ from ativos import AtivoHardware, AtivoSoftware
 from vulnerabilidades import Vulnerabilidade
 from enums import TipoHardware, TipoSoftware, TipoVulnerabilidade, Severidade, StatusTratamento
 from salvamento import salvar_dados, carregar_dados
+from colorama import Fore, Style, init
+init()
 
 class Sistema:
 
@@ -45,7 +47,7 @@ class Sistema:
 
         self.salvar()
                                       
-        return True, 'Ativo cadastrado com sucesso!!'
+        return True, Fore.YELLOW + 'Ativo cadastrado com sucesso!!' + Style.RESET_ALL
 
 
     def cadastrar_ativo_software(
@@ -77,7 +79,7 @@ class Sistema:
 
         self.salvar()
                                       
-        return True, 'Ativo cadastrado com sucesso!!'
+        return True, Fore.YELLOW + 'Ativo cadastrado com sucesso!!' + Style.RESET_ALL
         
 
     def cadastrar_vulne(
@@ -102,14 +104,14 @@ class Sistema:
 
         self.salvar()
         
-        return True, 'Vulnerabilidade cadastrada com sucesso!!'
+        return True, Fore.BLUE + 'Vulnerabilidade cadastrada com sucesso!!' + Style.RESET_ALL
 
 
     def buscar_ativo(self, ativo_buscado):
         
         if not self.ativos:
 
-              return None, 'Não existem Ativos cadastrados!!'
+              return None, Fore.GREEN + 'Não existem Ativos cadastrados!!' + Style.RESET_ALL
 
         if ativo_buscado.isdigit():
             ativo_buscado = int(ativo_buscado)
@@ -119,13 +121,13 @@ class Sistema:
             if (isinstance(ativo_buscado, str)
         and ativo_buscado.lower() == ativo.nome_hostname.lower() ): 
                 
-                return ativo, 'Ativo encontrado com sucesso!!'
+                return ativo, Fore.YELLOW + 'Ativo encontrado com sucesso!!' + Style.RESET_ALL
 
             if ativo_buscado == ativo.id_ativo:
                 
-                return ativo, 'Ativo encontrado com sucesso!!'
+                return ativo, Fore.YELLOW + 'Ativo encontrado com sucesso!!' + Style.RESET_ALL
       
-        return None, 'O ativo não existe ou foi excluído.'
+        return None, Fore.GREEN + 'O ativo não existe ou foi excluído.' + Style.RESET_ALL
 
 
     def listar_todos(self):
@@ -158,7 +160,7 @@ class Sistema:
 
         self.salvar()
 
-        return True, 'Ativo atualizado com sucesso!!'
+        return True, Fore.YELLOW + 'Ativo atualizado com sucesso!!' + Style.RESET_ALL
         
 
     def excluir_ativo(self, ativo):
@@ -169,7 +171,7 @@ class Sistema:
 
         self.salvar()
         
-        return True, f'O ativo {nome} foi excluído com sucesso!!'
+        return True, Fore.YELLOW + f'O ativo "{nome}" foi excluído com sucesso!!' + Style.RESET_ALL
 
 
 ## Funções que se comunicam com salvamento.py (json)

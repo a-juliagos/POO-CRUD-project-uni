@@ -2,6 +2,8 @@ from sistema import Sistema
 import interface
 from time import sleep
 from utils import limpar_tela, pausar, ler_opcao
+from colorama import Fore, Style, init
+init()
 
 sistema = Sistema()
 
@@ -14,7 +16,7 @@ while True:
     match escolha:
 
         case 0:
-            print("Encerrando sistema...")
+            print(Fore.RED +"Encerrando sistema..." + Style.RESET_ALL)
             sleep(2)
             break
 
@@ -33,7 +35,8 @@ while True:
 
                     match escolha:
 
-                        case 1:  
+                        case 1:
+                            limpar_tela()  
                             print('Digite as informações do ativo a ser cadastrado.')
                             info = interface.pegar_dados_hardware()
                             sucesso, mensagem = sistema.cadastrar_ativo_hardware(*info)
@@ -41,6 +44,7 @@ while True:
                             pausar()
 
                         case 2:
+                            limpar_tela()
                             print('Digite as informações do ativo a ser cadastrado.')
                             info = interface.pegar_dados_software()
                             sucesso, mensagem = sistema.cadastrar_ativo_software(*info)

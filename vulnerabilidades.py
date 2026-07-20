@@ -15,4 +15,5 @@ class Vulnerabilidade:
         "tipo": self.tipo.name, 
         "severidade": self.severidade.name, 
         "status": self.status.name, 
+        
         }

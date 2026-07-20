@@ -54,9 +54,9 @@ def pegar_dados_hardware():
 
     for tipo in TipoHardware:
         
-        print(f'{tipo.value} - {tipo.name}\n')
+        print(f'{tipo.value} - {tipo.name}')
 
-    tipo = ler_enum(TipoHardware, 'Tipo: ')
+    tipo = ler_enum(TipoHardware, '\nTipo: ')
 
     ano = ler_opcao("Ano: ")
 
@@ -78,9 +78,9 @@ def pegar_dados_software():
     setor = proibir_vazio('Setor: ')
 
     for tipo in TipoSoftware:
-        print(f'{tipo.value} - {tipo.name}\n')
+        print(f'{tipo.value} - {tipo.name}')
 
-    tipo = ler_enum(TipoSoftware, 'Tipo: ')
+    tipo = ler_enum(TipoSoftware, '\nTipo: ')
 
     versao = proibir_vazio("Versão: ")
 
@@ -100,19 +100,19 @@ def pegar_dados_vulne():
     descricao = proibir_vazio('Descrição: ')
 
     for vuln in TipoVulnerabilidade:
-        print(f'{vuln.value} - {vuln.name}\n')
+        print(f'{vuln.value} - {vuln.name}')
 
-    tipo = ler_enum(TipoVulnerabilidade, 'Tipo: ')
+    tipo = ler_enum(TipoVulnerabilidade, '\nTipo: ')
 
     for sev in Severidade:
-        print(f'{sev.value} - {sev.name}\n')
+        print(f'{sev.value} - {sev.name}')
 
-    severidade = ler_enum(Severidade, 'Severidade: ')
+    severidade = ler_enum(Severidade, '\nSeveridade: ')
 
     for status in StatusTratamento:
-        print(f'{status.value} - {status.name}\n')
+        print(f'{status.value} - {status.name}')
 
-    status = ler_enum(StatusTratamento, 'Status: ')
+    status = ler_enum(StatusTratamento, '\nStatus: ')
 
     return descricao, tipo, severidade, status
 
@@ -139,10 +139,3 @@ def pegar_dados_atualizacao(ativo):
         return novo_nome, novo_responsavel, novo_setor, nova_versao, nova_licenca
 
     return novo_nome, novo_responsavel, novo_setor, None, None
-                
-
-
-
-
-
-
