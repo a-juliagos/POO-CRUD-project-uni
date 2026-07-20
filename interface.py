@@ -54,7 +54,7 @@ def pegar_dados_hardware():
 
     for tipo in TipoHardware:
         
-        print(f'{tipo.value} - {tipo.name}')
+        print(f'{tipo.value} - {tipo.name}\n')
 
     tipo = ler_enum(TipoHardware, 'Tipo: ')
 
@@ -78,7 +78,7 @@ def pegar_dados_software():
     setor = proibir_vazio('Setor: ')
 
     for tipo in TipoSoftware:
-        print(f'{tipo.value} - {tipo.name}')
+        print(f'{tipo.value} - {tipo.name}\n')
 
     tipo = ler_enum(TipoSoftware, 'Tipo: ')
 
@@ -100,17 +100,17 @@ def pegar_dados_vulne():
     descricao = proibir_vazio('Descrição: ')
 
     for vuln in TipoVulnerabilidade:
-        print(f'{vuln.value} - {vuln.name}')
+        print(f'{vuln.value} - {vuln.name}\n')
 
     tipo = ler_enum(TipoVulnerabilidade, 'Tipo: ')
 
     for sev in Severidade:
-        print(f'{sev.value} - {sev.name}')
+        print(f'{sev.value} - {sev.name}\n')
 
-    severidade = ler_enum(Severidade, 'Tipo: ')
+    severidade = ler_enum(Severidade, 'Severidade: ')
 
     for status in StatusTratamento:
-        print(f'{status.value} - {status.name}')
+        print(f'{status.value} - {status.name}\n')
 
     status = ler_enum(StatusTratamento, 'Status: ')
 

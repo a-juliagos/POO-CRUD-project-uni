@@ -48,6 +48,7 @@ while True:
                             pausar()
          
                 case 2:
+                    limpar_tela()
                     print('Digite as informações da vulnerabilidade a ser cadastrada.')
                     ativo_buscado = interface.pegar_ativo_buscado()
                     ativo, mensagem = sistema.buscar_ativo(ativo_buscado)
