@@ -119,11 +119,11 @@ class Sistema:
             if (isinstance(ativo_buscado, str)
         and ativo_buscado.lower() == ativo.nome_hostname.lower() ): 
                 
-                return ativo
+                return ativo, 'Ativo encontrado com sucesso!!'
 
             if ativo_buscado == ativo.id_ativo:
                 
-                return ativo
+                return ativo, 'Ativo encontrado com sucesso!!'
       
         return None, 'O ativo não existe ou foi excluído.'
 

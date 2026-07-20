@@ -3,7 +3,7 @@ from utils import proibir_vazio, ler_opcao, ler_enum
 
 def mostrar_menu_principal():
 
-    print('\n---- Bem Vindo ao Sistema de Cadastro ----')
+    print('---- Bem Vindo ao Sistema de Cadastro ----')
     print("""
    1 - Cadastrar Ativo/Vulnerabilidade
    2 - Buscar/Listar
@@ -12,7 +12,7 @@ def mostrar_menu_principal():
    0 - Sair 
 """)
     
-    
+
 def mostrar_menu_cadastro():
 
     print("""Opções de cadastro: 
