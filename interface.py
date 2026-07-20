@@ -12,6 +12,7 @@ def mostrar_menu_principal():
    0 - Sair 
 """)
     
+    
 def mostrar_menu_cadastro():
 
     print("""Opções de cadastro: 
@@ -20,6 +21,7 @@ def mostrar_menu_cadastro():
    2 - Cadastrar Vulnerabilidade             
      """)
     
+
 def mostrar_menu_tipo_ativo():
 
      print("""Opções de cadastro: 
@@ -27,6 +29,7 @@ def mostrar_menu_tipo_ativo():
    1 - Hardware
    2 - Software            
      """)
+
 
 def mostrar_menu_busca():
 
@@ -43,76 +46,76 @@ def pegar_ativo_buscado():
 
 def pegar_dados_hardware():
                             
-    nome_hostname = input('Nome ou nome host: ')
+    nome_hostname = proibir_vazio('Nome ou nome host: ')
                             
-    responsavel = input('Responsável: ')
+    responsavel = proibir_vazio('Responsável: ')
 
-    setor = input('Setor: ')
+    setor = proibir_vazio('Setor: ')
 
     for tipo in TipoHardware:
         
         print(f'{tipo.value} - {tipo.name}')
 
-    tipo = TipoHardware(int(input('Tipo: ')))
+    tipo = ler_enum(TipoHardware, 'Tipo: ')
 
-    ano = int(input("Ano: "))
+    ano = ler_opcao("Ano: ")
 
     if tipo == TipoHardware.SERVIDOR:
         cor = None
 
     else:
-        cor = input("Cor: ")
+        cor = proibir_vazio("Cor: ")
 
     return nome_hostname, responsavel, setor, tipo, ano, cor
 
 
 def pegar_dados_software():
-
-    print('Digite as informações do ativo a ser cadastrado.')
+                        
+    nome_hostname = proibir_vazio('Nome ou nome host: ')
                             
-    nome_hostname = input('Nome ou nome host: ')
-                            
-    responsavel = input('Responsável: ')
+    responsavel = proibir_vazio('Responsável: ')
 
-    setor = input('Setor: ')
+    setor = proibir_vazio('Setor: ')
 
     for tipo in TipoSoftware:
         print(f'{tipo.value} - {tipo.name}')
 
-    tipo = TipoSoftware(int(input('Tipo: ')))
+    tipo = ler_enum(TipoSoftware, 'Tipo: ')
 
-    versao = input("Versão: ")
+    versao = proibir_vazio("Versão: ")
 
-    li = input("O software possui licença? (s/n): ")
+    li = proibir_vazio("O software possui licença? (s/n): ")
 
     if li == 'n':
         licenca = None
 
     else:
-        licenca = input("Licença: ")
+        licenca = proibir_vazio("Licença: ")
 
     return nome_hostname, responsavel, setor, tipo, versao, licenca
 
+
 def pegar_dados_vulne():
 
-    descricao = input('Descrição: ')
+    descricao = proibir_vazio('Descrição: ')
 
     for vuln in TipoVulnerabilidade:
         print(f'{vuln.value} - {vuln.name}')
 
-    tipo = TipoVulnerabilidade(int(input('Tipo: ')))
+    tipo = ler_enum(TipoVulnerabilidade, 'Tipo: ')
 
     for sev in Severidade:
         print(f'{sev.value} - {sev.name}')
 
-    severidade = Severidade(int(input('Severidade: ')))
+    severidade = ler_enum(Severidade, 'Tipo: ')
 
     for status in StatusTratamento:
         print(f'{status.value} - {status.name}')
 
-    status = StatusTratamento(int(input('Status: ')))
+    status = ler_enum(StatusTratamento, 'Status: ')
 
     return descricao, tipo, severidade, status
+
 
 def pegar_dados_atualizacao(ativo):
 
@@ -125,12 +128,12 @@ def pegar_dados_atualizacao(ativo):
         nova_versao = proibir_vazio("Nova versão: ")
 
         licenca_atual = ativo.licenca if ativo.licenca else "Não possui"
-        manter = input(f"Manter a licença atual ({licenca_atual})? (s/n): ")
+        manter = proibir_vazio(f"Manter a licença atual ({licenca_atual})? (s/n): ")
 
         if manter.lower() == 's':
             nova_licenca = ativo.licenca
         else:
-            possui_licenca = input("Possui licença? (s/n): ")
+            possui_licenca = proibir_vazio("Possui licença? (s/n): ")
             nova_licenca = proibir_vazio("Nova licença: ") if possui_licenca.lower() == 's' else None
 
         return novo_nome, novo_responsavel, novo_setor, nova_versao, nova_licenca

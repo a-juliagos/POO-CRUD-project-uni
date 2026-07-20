@@ -1,6 +1,6 @@
 from sistema import Sistema
 import interface
-from utils import limpar_tela, pausar, proibir_vazio, ler_opcao, ler_enum
+from utils import limpar_tela, pausar, proibir_vazio, ler_opcao
 
 sistema = Sistema()
 
@@ -116,8 +116,9 @@ while True:
 
                     print('Digite as informações da vulnerabilidade a ser cadastrada.')
 
-                    ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
-            
+                    #ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
+
+                    ativo_buscado = interface.pegar_ativo_buscado()
                     ativo = sistema.buscar_ativo(ativo_buscado)
 
                     if ativo:
@@ -166,7 +167,8 @@ while True:
                 case 1:
 
                     limpar_tela()
-                    ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
+                    #ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
+                    ativo_buscado = interface.pegar_ativo_buscado()
                     ativo = sistema.buscar_ativo(ativo_buscado)
 
                     if ativo:
@@ -183,8 +185,8 @@ while True:
 
         case 3:
             
-            ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
-            
+            #ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
+            ativo_buscado = interface.pegar_ativo_buscado()
             ativo = sistema.buscar_ativo(ativo_buscado)
             
             if ativo:
@@ -226,8 +228,8 @@ while True:
         case 4: 
 
             limpar_tela()
-            ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
-            
+            #ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
+            ativo_buscado = interface.pegar_ativo_buscado()
             ativo = sistema.buscar_ativo(ativo_buscado)
 
             if ativo:
