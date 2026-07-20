@@ -1,20 +1,25 @@
 from sistema import Sistema
-from enums import TipoHardware, TipoSoftware, TipoVulnerabilidade, Severidade, StatusTratamento
+import interface
+from utils import limpar_tela, pausar, proibir_vazio, ler_opcao, ler_enum
 
 sistema = Sistema()
 
 while True:
 
-    print('\n---- Bem Vindo ao Sistema de Cadastro ----')
-    print("""
-   1 - Cadastrar Ativo/Vulnerabilidade
-   2 - Buscar/Listar
-   3 - Atualizar
-   4 - Remover
-   0 - Sair 
-""")
+#     print('\n---- Bem Vindo ao Sistema de Cadastro ----')
+#     print("""
+#    1 - Cadastrar Ativo/Vulnerabilidade
+#    2 - Buscar/Listar
+#    3 - Atualizar
+#    4 - Remover
+#    0 - Sair 
+# """)
     
-    escolha = int(input('Escolha uma opção para continuar: '))
+    limpar_tela()
+
+    interface.mostrar_menu_principal()
+    
+    escolha = ler_opcao('Escolha uma opção para continuar: ')
 
     match escolha:
 
@@ -23,26 +28,33 @@ while True:
 
         case 1:
 
-            print("""Opções de cadastro: 
+            limpar_tela()
+
+#             print("""Opções de cadastro: 
                
-   1 - Cadastrar Ativo
-   2 - Cadastrar Vulnerabilidade             
-     """)
+#    1 - Cadastrar Ativo
+#    2 - Cadastrar Vulnerabilidade             
+#      """)
+
+            interface.mostrar_menu_cadastro()
             
-            escolha = int(input('Escolha uma opção para continuar: ') )       
+            escolha = ler_opcao('Escolha uma opção para continuar: ')      
 
             match escolha:
                 
                 case 1:
 
+                    limpar_tela()
+
                     print('Escolha o tipo de ativo a ser cadastrado.')
                     
-                    print("""Opções de cadastro: 
+#                     print("""Opções de cadastro: 
                
-   1 - Hardware
-   2 - Software            
-     """)
-                    escolha = int(input('Escolha uma opção para continuar: ') )
+#    1 - Hardware
+#    2 - Software            
+#      """)
+                    interface.mostrar_menu_tipo_ativo()
+                    escolha = ler_opcao('Escolha uma opção para continuar: ')
 
                     match escolha:
 
@@ -50,53 +62,55 @@ while True:
                             
                             print('Digite as informações do ativo a ser cadastrado.')
                             
-                            nome_hostname = input('Nome ou nome host: ')
+                            # nome_hostname = input('Nome ou nome host: ')
                             
-                            responsavel = input('Responsável: ')
+                            # responsavel = input('Responsável: ')
 
-                            setor = input('Setor: ')
+                            # setor = input('Setor: ')
 
-                            for tipo in TipoHardware:
-                                print(f'{tipo.value} - {tipo.name}')
+                            # for tipo in TipoHardware:
+                            #     print(f'{tipo.value} - {tipo.name}')
 
-                            tipo = TipoHardware(int(input('Tipo: ')))
+                            # tipo = TipoHardware(int(input('Tipo: ')))
 
-                            ano = int(input("Ano: "))
+                            # ano = int(input("Ano: "))
 
-                            if tipo == TipoHardware.SERVIDOR:
-                                cor = None
+                            # if tipo == TipoHardware.SERVIDOR:
+                            #     cor = None
 
-                            else:
-                                cor = input("Cor: ")
+                            # else:
+                            #     cor = input("Cor: ")
 
-                            sistema.cadastrar_ativo_hardware(nome_hostname, responsavel, setor, tipo, ano, cor)
+                            info = interface.pegar_dados_hardware()
+                            sistema.cadastrar_ativo_hardware(*info)
 
                         case 2:
 
                             print('Digite as informações do ativo a ser cadastrado.')
                             
-                            nome_hostname = input('Nome ou nome host: ')
+                            # nome_hostname = input('Nome ou nome host: ')
                             
-                            responsavel = input('Responsável: ')
+                            # responsavel = input('Responsável: ')
 
-                            setor = input('Setor: ')
+                            # setor = input('Setor: ')
 
-                            for tipo in TipoSoftware:
-                                print(f'{tipo.value} - {tipo.name}')
+                            # for tipo in TipoSoftware:
+                            #     print(f'{tipo.value} - {tipo.name}')
 
-                            tipo = TipoSoftware(int(input('Tipo: ')))
+                            # tipo = TipoSoftware(int(input('Tipo: ')))
 
-                            versao = input("Versão: ")
+                            # versao = input("Versão: ")
 
-                            li = input("O software possui licença? (s/n): ")
+                            # li = input("O software possui licença? (s/n): ")
 
-                            if li == 'n':
-                                licenca = None
+                            # if li == 'n':
+                            #     licenca = None
 
-                            else:
-                                licenca = input("Licença: ")
+                            # else:
+                            #     licenca = input("Licença: ")
 
-                            sistema.cadastrar_ativo_software(nome_hostname, responsavel, setor, tipo, versao, licenca)
+                            info = interface.pegar_dados_software()
+                            sistema.cadastrar_ativo_software(*info)
          
                 case 2:
 
@@ -108,55 +122,61 @@ while True:
 
                     if ativo:
                          
-                        descricao = input('Descrição: ')
+                        # descricao = input('Descrição: ')
 
-                        for vuln in TipoVulnerabilidade:
-                            print(f'{vuln.value} - {vuln.name}')
+                        # for vuln in TipoVulnerabilidade:
+                        #     print(f'{vuln.value} - {vuln.name}')
 
-                        tipo = TipoVulnerabilidade(int(input('Tipo: ')))
+                        # tipo = TipoVulnerabilidade(int(input('Tipo: ')))
 
-                        for sev in Severidade:
-                            print(f'{sev.value} - {sev.name}')
+                        # for sev in Severidade:
+                        #     print(f'{sev.value} - {sev.name}')
 
-                        severidade = Severidade(int(input('Severidade: ')))
+                        # severidade = Severidade(int(input('Severidade: ')))
 
-                        for status in StatusTratamento:
-                            print(f'{status.value} - {status.name}')
+                        # for status in StatusTratamento:
+                        #     print(f'{status.value} - {status.name}')
 
-                        status = StatusTratamento(int(input('Status: ')))
+                        # status = StatusTratamento(int(input('Status: ')))
 
-                        sistema.cadastrar_vulne(ativo, descricao, tipo, severidade, status)
+                        info = interface.pegar_dados_vulne()
+                        sistema.cadastrar_vulne(ativo, *info)
+
+                        # sistema.cadastrar_vulne(ativo, descricao, tipo, severidade, status)
                 
                 case _:
                     print("Escolha um valor válido.")
         
         case 2: 
+
+            limpar_tela()
             
-            print("""Opções de busca: 
+#             print("""Opções de busca: 
                
-   1 - Buscar 
-   2 - Listar todos            
-     """)
+#    1 - Buscar 
+#    2 - Listar todos            
+#      """)
+
+            interface.mostrar_menu_busca()
     
-            escolha = int(input('Escolha uma opção para continuar: '))
+            escolha = ler_opcao('Escolha uma opção para continuar: ')
             
             match escolha:
                 
-                case 1: 
+                case 1:
 
+                    limpar_tela()
                     ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
                     ativo = sistema.buscar_ativo(ativo_buscado)
 
                     if ativo:
                         ativo.listar()
+                        pausar()
                                      
                 case 2:
-                    
-                    ativo = sistema.buscar_ativo(ativo_buscado)
 
-                    if ativo:
-        
-                       sistema.listar_todos()
+                    limpar_tela()
+                    sistema.listar_todos()
 
                 case _:
                     print("Escolha um valor válido.")
@@ -169,38 +189,43 @@ while True:
             
             if ativo:
 
-                print('Digite as informações do ativo a ser cadastrado.')
+                limpar_tela()
+                print('Digite as novas informações do ativo')
 
-                novo_nome = input('Novo nome ou nome host: ')
+                # novo_nome = input('Novo nome ou nome host: ')
 
-                novo_responsavel = input('Novo responsável: ')
+                # novo_responsavel = input('Novo responsável: ')
 
-                novo_setor = input('Novo setor: ')
+                # novo_setor = input('Novo setor: ')
 
-                if hasattr(ativo, "licenca"):
+                # if hasattr(ativo, "licenca"):
                     
-                    nova_versao = input("Nova versão: ")
+                #     nova_versao = input("Nova versão: ")
                     
-                    licenca_atual = ativo.licenca if ativo.licenca else "Não possui"
-                    manter = input(f"Manter a licença atual ({ativo.licenca})? (s/n): ")
+                #     licenca_atual = ativo.licenca if ativo.licenca else "Não possui"
+                #     manter = input(f"Manter a licença atual ({ativo.licenca})? (s/n): ")
 
-                    if manter.lower() == 's':
+                #     if manter.lower() == 's':
                         
-                        nova_licenca = ativo.licenca
+                #         nova_licenca = ativo.licenca
 
-                    else:
+                #     else:
                         
-                        li = input("Possui licença? (s/n): ")
-                        nova_licenca = None if li == 'n' else input("Nova licença: ")
+                #         li = input("Possui licença? (s/n): ")
+                #         nova_licenca = None if li == 'n' else input("Nova licença: ")
                     
-                    sistema.atualizar_ativo(ativo, novo_nome, novo_responsavel, novo_setor, nova_versao, nova_licenca)
+                #     sistema.atualizar_ativo(ativo, novo_nome, novo_responsavel, novo_setor, nova_versao, nova_licenca)
 
-                else:
+                # else:
 
-                    sistema.atualizar_ativo(ativo, novo_nome, novo_responsavel, novo_setor)
+                #     sistema.atualizar_ativo(ativo, novo_nome, novo_responsavel, novo_setor)
+
+                info = interface.coletar_atualizacao(ativo)
+                sistema.atualizar_ativo(ativo, *info)
                               
         case 4: 
-            
+
+            limpar_tela()
             ativo_buscado = input('Digite o nome/hostname ou ID do ativo buscado: ')
             
             ativo = sistema.buscar_ativo(ativo_buscado)

@@ -109,7 +109,7 @@ class Sistema:
         
         if not self.ativos:
 
-              return None #'Não existem Ativos cadastrados!!'
+              return None, 'Não existem Ativos cadastrados!!'
 
         if ativo_buscado.isdigit():
             ativo_buscado = int(ativo_buscado)
@@ -125,7 +125,7 @@ class Sistema:
                 
                 return ativo
       
-        return None #'O ativo não existe ou foi excluído.'
+        return None, 'O ativo não existe ou foi excluído.'
 
 
     def listar_todos(self):

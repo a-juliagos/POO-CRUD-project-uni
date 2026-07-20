@@ -35,10 +35,11 @@ ID: {self.id_ativo}
 Nome/Hostname: {self.nome_hostname}
 Responsável: {self.responsavel}
 Setor: {self.setor}
-Tipo: {self.tipo.name}   
-""")  
+Tipo: {self.tipo.name} """)
 
-        print('---- Vulnerabilidades --- ')
+    def listar_vulnerabilidades(self):  
+
+        print('\n---- Vulnerabilidades --- ')
         
         if not self.vulnerabilidades:
             
@@ -74,12 +75,14 @@ class AtivoHardware(Ativo):
 
     def listar(self):
 
-        super.listar()
+        super().listar()
         print(f"Ano: {self.ano}")
         if self.cor is None:
             print(f"Cor: Não possui")
         else:
-            print(f"Cor: {self.cor}")
+            print(f"Cor: {self.cor}\n")
+
+        super().listar_vulnerabilidades()
         print("-------------------------")
 
 
@@ -101,12 +104,14 @@ class AtivoSoftware(Ativo):
 
     def listar(self):
 
-        super.listar()
+        super().listar()
         print(f"Versão: {self.versao}")
         if self.licenca is None:
-            print("Licença: Não possui")
+            print("Licença: Não possui\n")
         else:
-            print(f"Licença: {self.licenca}")
+            print(f"Licença: {self.licenca}\n")
+        
+        super().listar_vulnerabilidades()
         print("-------------------------")
 
 
